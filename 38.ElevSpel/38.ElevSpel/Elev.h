@@ -44,7 +44,7 @@ public: void CreatingNewStudent()
 		FavoritClass = Classes[Slump2];
 		Tierd = rand() % 11;
 		helth = rand() % 10 + 5;
-		Hunger = rand() %5;
+		Hunger = rand() %6;
 		Smart = rand() % 9 + 1;
 
 		Created = true;
@@ -59,7 +59,7 @@ private: void RandomName()
 		 srand(time(NULL));
 		 int Slump = rand() % 10;
 
-		 string SurNames[] = { "Lundqvist","Person","Friman","Eld","Kalson","Andersson","Johanson","Tindvall","Larsson","Svenson" };
+		 string SurNames[] = { "Lundqvist","Person","Friman","Eld","Nilson","Andersson","Johanson","Tindvall","Larsson","Svenson" };
 
 		 if (Gender == 'M')
 		 {
@@ -81,8 +81,10 @@ public:	 void GetInfo()
 	 {
 		 cout << Name <<"\nStats\n"<< "FavoritClass --> " << FavoritClass << "\nSmart Scale--> "<<Smart<< "\nLevel of hungrynes --> " << Hunger << "\nSleapines--> " << Tierd<<"\n";
 	 }
-
-	 
+	void AddSleap(int TierdAdd)
+	 {
+		 Tierd += TierdAdd;
+	 }
 
 	 
 };

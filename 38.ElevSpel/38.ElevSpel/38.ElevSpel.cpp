@@ -17,3 +17,13 @@ int main()
 
 }
 
+bool MainGame()
+{
+    bool Win = false;
+        while (Win == false)
+        {
+
+        }
+        return Win;
+}
+
