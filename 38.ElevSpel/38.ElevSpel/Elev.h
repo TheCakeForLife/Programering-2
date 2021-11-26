@@ -81,10 +81,11 @@ public:	 void GetInfo()
 	 {
 		 cout << Name <<"\nStats\n"<< "FavoritClass --> " << FavoritClass << "\nSmart Scale--> "<<Smart<< "\nLevel of hungrynes --> " << Hunger << "\nSleapines--> " << Tierd<<"\n";
 	 }
-	void AddSleap(int TierdAdd)
+public:	void AddSleap(int TierdAdd)
 	 {
 		 Tierd += TierdAdd;
 	 }
+
 
 	 
 };
