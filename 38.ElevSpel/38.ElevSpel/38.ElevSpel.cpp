@@ -1,19 +1,17 @@
 #include <iostream>
 #include "Elev.h"
+#include <Windows.h>
 using namespace std;
 
 int main()
 {
     cout << "Hello World Elev!\n";
-
-    eleve Student1;
-
-    Student1.CreatingNewStudent();
-    Student1.GetInfo();
-
+    Elev Student[30];
+    for (int i = 0; i<30; i++)
+    { 
+        Student[i].CreatingNewStudent();
+        cout << "\n";
+        Student[i].GetInfo();
+    }
     system("pause");
-
-
-
 }
-
