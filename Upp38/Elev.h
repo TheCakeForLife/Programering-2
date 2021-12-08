@@ -15,7 +15,7 @@ private:
 	void RandomName();
 	string Name;
 	int Hunger;
-	int Tired;
+	int Tierd;
 	int helth;
 	int Smart;
 	string FavoritClass;
