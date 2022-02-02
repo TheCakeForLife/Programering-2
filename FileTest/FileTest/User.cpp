@@ -7,8 +7,7 @@ using namespace std;
 
 User::User()
 {
-    bool MadeUser = false;
-    while (!MadeUser)
+    while (true)
 	{
         cout << "Username:\n";
         cin >> Username;
@@ -16,10 +15,10 @@ User::User()
         cin >> Password;
         if (ReadFile("Users"))
         {
-
+            string Result = Username + "_" + Password;
+            WriteToFile("Users.txt", Result);
+            return;
         }
-
-
 	}
 }
 
@@ -40,7 +39,7 @@ bool User::WriteToFile(string NameOfFile, string Content)
 bool User::ReadFile(string NameOfFile)
 {
     bool Done = false;
-    bool NameTaken = false;
+    bool NameNotTaken = true;
     while (!Done)
     {
         string line;
@@ -53,12 +52,12 @@ bool User::ReadFile(string NameOfFile)
             {
                 cout << line << '\n';
                 if (line == Username)
-                    NameTaken = true;
+                    NameNotTaken = false;
             }
             File.close();
             system("pause");
             Done = true;
-            return NameTaken;
+            return NameNotTaken;
         }
         else
             cout << "Unable to open file\n";
