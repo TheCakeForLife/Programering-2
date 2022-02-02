@@ -35,5 +35,5 @@ void Elev::RandomName()
 
 void Elev::GetInfo()
 {
-	cout << Name << "\nStats\n" << "FavoritClass --> " << FavoritClass << "\nSmart Scale--> " << Smart << "\nLevel of hungrynes --> " << Hunger << "\nSleapines--> " << Tierd << "\n\n";
+	cout << Name << "\nStats\n" << "FavoritClass --> " << FavoritClass << "\nSmart Scale--> " << Smart << "\nLevel of hungrynes --> " << Hunger << "\nSleapines--> " << Tired << "\n\n";
 }

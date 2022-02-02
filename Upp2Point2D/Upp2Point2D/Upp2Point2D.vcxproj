@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{2abb3181-fe65-4fe7-9ec6-2e6d06660bce}</ProjectGuid>
-    <RootNamespace>My38ElevSpel</RootNamespace>
+    <ProjectGuid>{8ea6f27a-24f5-4bd4-95fe-ec4153d874e0}</ProjectGuid>
+    <RootNamespace>Upp2Point2D</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,11 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="38.ElevSpel.cpp" />
-    <ClCompile Include="Elev.cpp" />
+    <ClCompile Include="Upp2Point2D.cpp" />
+    <ClCompile Include="Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Elev.h" />
+    <ClInclude Include="Vector2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
