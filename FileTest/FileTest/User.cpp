@@ -13,12 +13,9 @@ User::User()
         cin >> Username;
         cout << "\nPassword:\n";
         cin >> Password;
-        if (ReadFile("Users"))
-        {
-            string Result = Username + "_" + Password;
-            WriteToFile("Users.txt", Result);
-            return;
-        }
+        string* Lines = ReadFile("Users.txt", 4);
+        cout << Lines[3];
+        system("pause");
 	}
 }
 
@@ -36,30 +33,40 @@ bool User::WriteToFile(string NameOfFile, string Content)
     return false;
 }
 
-bool User::ReadFile(string NameOfFile)
+string* User::ReadFile(string NameOfFile ,unsigned int NumberInArray)
 {
-    bool Done = false;
-    bool NameNotTaken = true;
-    while (!Done)
+    string *Lines = new string[NumberInArray];
+    string line;
+
+    while (true)
     {
-        string line;
         ifstream File;
         File.open(NameOfFile, ofstream::app);
         if (File.is_open())
         {
             cout << "File contains:\n";
-            while (getline(File, line))
+            int i = 0;
+            while (getline(File, line) && i < NumberInArray)
             {
-                cout << line << '\n';
-                if (line == Username)
-                    NameNotTaken = false;
-            }
-            File.close();
-            system("pause");
-            Done = true;
-            return NameNotTaken;
+                Lines[i] = line;
+                i++;
+            }      
         }
-        else
-            cout << "Unable to open file\n";
+            File.close();
+            return Lines;
     }
+            cout << "Unable to open file\n";
+            system("pause");
+}
+
+int NumberOfRowsInFile(string NameOfFile)
+{
+    int NumberOfRows = 0;
+    string line;
+    ifstream File;
+    File.open(NameOfFile, ofstream::app);
+    while (getline(File, line))
+        NumberOfRows++;
+    File.close();
+    return NumberOfRows;
 }

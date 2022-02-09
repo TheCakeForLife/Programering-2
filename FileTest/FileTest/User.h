@@ -9,5 +9,5 @@ class User
 	public:
 	User();
 	bool WriteToFile(string NameOfFile, string Content);
-	bool ReadFile(string NameOfFile);
+	string* ReadFile(string NameOfFile, unsigned int NumberInArray);
 };
