@@ -1,72 +1,40 @@
 #pragma once
 #include <iostream>
-#include <fstream>
 #include <string>
 #include "User.h"
+#include "File.h"
 using namespace std;
+
+User::User(string Username, string Password)
+{
+    this->Password = Password;
+    this->Username = Username;
+}
 
 User::User()
 {
+    File Fstream;
     while (true)
 	{
         cout << "Username:\n";
         cin >> Username;
         cout << "\nPassword:\n";
         cin >> Password;
-        string* Lines = ReadFile("Users.txt", 4);
-        cout << Lines[3];
-        system("pause");
-	}
-}
-
-bool User::WriteToFile(string NameOfFile, string Content)
-{
-    ofstream File;
-    File.open(NameOfFile, ofstream::app);
-    if (File.is_open())
-    {
-        File << Content << "\n";
-        return true;
-    }
-    cout << "can't open file!";
-    File.close();
-    return false;
-}
-
-string* User::ReadFile(string NameOfFile ,unsigned int NumberInArray)
-{
-    string *Lines = new string[NumberInArray];
-    string line;
-
-    while (true)
-    {
-        ifstream File;
-        File.open(NameOfFile, ofstream::app);
-        if (File.is_open())
+        string* Lines = Fstream.ReadFile("Users.txt");
+        bool NotTaken = true;
+        int Rows = Fstream.NumberOfRowsInFile("Users.txt");
+        for (int i = 0; i < Rows; i += 2)
+            if ( Username == Lines[i])
+                NotTaken = false;
+        if (NotTaken)
         {
-            cout << "File contains:\n";
-            int i = 0;
-            while (getline(File, line) && i < NumberInArray)
-            {
-                Lines[i] = line;
-                i++;
-            }      
+            Fstream.WriteToFile("Users.txt", Username);
+            Fstream.WriteToFile("Users.txt", Password);
+            return;
         }
-            File.close();
-            return Lines;
-    }
-            cout << "Unable to open file\n";
-            system("pause");
-}
-
-int NumberOfRowsInFile(string NameOfFile)
-{
-    int NumberOfRows = 0;
-    string line;
-    ifstream File;
-    File.open(NameOfFile, ofstream::app);
-    while (getline(File, line))
-        NumberOfRows++;
-    File.close();
-    return NumberOfRows;
+        system("cls");
+        cout << "That name is taken try a new name!\n";
+        system("pause");
+        system("cls");
+	}
 }

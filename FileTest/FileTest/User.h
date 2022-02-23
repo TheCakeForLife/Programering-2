@@ -7,7 +7,6 @@ class User
 		string Username;
 		string Password;
 	public:
-	User();
-	bool WriteToFile(string NameOfFile, string Content);
-	string* ReadFile(string NameOfFile, unsigned int NumberInArray);
+		User();
+		User(string Username, string Password);
 };
