@@ -5,6 +5,17 @@
 #include "File.h"
 using namespace std;
 
+void AddExistingUsers(User* Users)
+{
+    File Fstream;
+    string* Lines = Fstream.ReadFile("Users.txt");
+    for (int i = 0; i < Fstream.NumberOfRowsInFile("Users.txt"); i=+ 2)
+    {
+        Users[i] = *(new User(Lines[i], Lines[i+1]));
+    }
+    delete[] Lines;
+}
+
 void MainUi()
 {
     File Fstream;
@@ -64,14 +75,13 @@ void login()
             {
                 MainUi();
                 return;
-            }
-                
+            }      
         }
         cout << "The user was not found try again\n\n";
     }
 }
 
-void StartUi()
+void StartUi(User* Users)
 {
     while (true)
     {
@@ -81,7 +91,10 @@ void StartUi()
         if (input == "1")
             login();
         else if (input == "2")
+        {
             new User;
+            AddExistingUsers(Users);
+        }
         else if (input == "3")
             return;
         else
@@ -95,6 +108,8 @@ void StartUi()
 
 int main()
 {
-    StartUi();
+    File Fstream;
+    User* Users = new User[(Fstream.NumberOfRowsInFile("Users.txt") / 2)];
+    StartUi(Users);
     system("cls");
 }

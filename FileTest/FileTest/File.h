@@ -7,4 +7,5 @@ public:
 	bool WriteToFile(string NameOfFile, string Content);
 	string* ReadFile(string NameOfFile);
 	int NumberOfRowsInFile(string NameOfFile);
+	string* DeCryptFile(string NameOfFile)
 };

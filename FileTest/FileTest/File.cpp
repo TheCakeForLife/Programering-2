@@ -55,3 +55,10 @@ string* File::ReadFile(string NameOfFile)
     cout << "Unable to open file\n";
     system("pause");
 }
+
+
+string* File::DeCryptFile(string NameOfFile)
+{
+    string* Lines = this->ReadFile(NameOfFile);
+
+}
