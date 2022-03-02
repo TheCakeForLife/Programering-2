@@ -13,7 +13,6 @@ User::User(string Username, string Password)
 
 User::User()
 {
-    File Fstream;
     while (true)
 	{
         cout << "Username:\n";
@@ -30,6 +29,7 @@ User::User()
         {
             Fstream.WriteToFile("Users.txt", Username);
             Fstream.WriteToFile("Users.txt", Password);
+            delete [] Lines;
             return;
         }
         system("cls");

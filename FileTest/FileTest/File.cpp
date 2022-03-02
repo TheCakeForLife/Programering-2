@@ -41,7 +41,6 @@ string* File::ReadFile(string NameOfFile)
         File.open(NameOfFile, ofstream::app);
         if (File.is_open())
         {
-            cout << "File contains:\n";
             int i = 0;
             while (getline(File, line) && i < NumberInArray)
             {
@@ -60,5 +59,14 @@ string* File::ReadFile(string NameOfFile)
 string* File::DeCryptFile(string NameOfFile)
 {
     string* Lines = this->ReadFile(NameOfFile);
-
+    for (int i = 0; i < NumberOfRowsInFile(NameOfFile);)
+    {
+        string temp = Lines[i];
+        for (int k = 0; k < temp.length(); k++)
+        {
+            int newtemp = (int)temp[k] + 1;
+            WriteToFile("Inttest.txt", temp);
+        }
+    }
+    return Lines;
 }

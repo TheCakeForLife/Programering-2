@@ -5,20 +5,22 @@
 #include "File.h"
 using namespace std;
 
-void AddExistingUsers(User* Users)
+void AddExistingUsers()
 {
-    File Fstream;
-    string* Lines = Fstream.ReadFile("Users.txt");
-    for (int i = 0; i < Fstream.NumberOfRowsInFile("Users.txt"); i=+ 2)
+    int Rows = Fstream.NumberOfRowsInFile("Users.txt");
+    User** Users = new User * [(Rows / 2)];
+    string* lines = Fstream.ReadFile("Users.txt");
+    for (int i = 0; i < (Rows - 1); i += 2)
     {
-        Users[i] = *(new User(Lines[i], Lines[i+1]));
+        Users[i] = new User(lines[i], lines[i + 1]);
+        cout << "Remaking User " << lines[(i)] << endl;
+        cout << "Remaking Pass " << lines[(i + 1)] << endl;
     }
-    delete[] Lines;
+    delete[] lines;
 }
 
 void MainUi()
 {
-    File Fstream;
     while (true)
     {
         char input;
@@ -59,7 +61,6 @@ void MainUi()
 
 void login()
 {
-    File Fstream;
     bool done = false;
     while (!done)
     {
@@ -77,11 +78,15 @@ void login()
                 return;
             }      
         }
-        cout << "The user was not found try again\n\n";
+        cout << "The user was not found\n1: try again\n2: Press key to continue\n";
+        string test;
+        cin >> test;
+        if (test != "1")
+            return;
     }
 }
 
-void StartUi(User* Users)
+void StartUi()
 {
     while (true)
     {
@@ -93,10 +98,12 @@ void StartUi(User* Users)
         else if (input == "2")
         {
             new User;
-            AddExistingUsers(Users);
+            AddExistingUsers();
         }
         else if (input == "3")
             return;
+        else if (input == "4")
+            Fstream.DeCryptFile("TestC.txt");
         else
         {
             cout << "That number is not in use try agin!\n";
@@ -108,8 +115,6 @@ void StartUi(User* Users)
 
 int main()
 {
-    File Fstream;
-    User* Users = new User[(Fstream.NumberOfRowsInFile("Users.txt") / 2)];
-    StartUi(Users);
+    StartUi();
     system("cls");
 }
