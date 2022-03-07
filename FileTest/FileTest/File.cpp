@@ -2,6 +2,9 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <stdlib.h>
+#pragma once
+
 
 int File::NumberOfRowsInFile(string NameOfFile)
 {
@@ -22,6 +25,22 @@ bool File::WriteToFile(string NameOfFile, string Content)
     if (File.is_open())
     {
         File << Content << "\n";
+        return true;
+    }
+    cout << "can't open file!";
+    File.close();
+    return false;
+}
+
+bool File::WriteIntToFile(string NameOfFile, int* Content , unsigned int ArraySize)
+{
+    ofstream File;
+    File.open(NameOfFile, ofstream::app);
+    if (File.is_open())
+    {
+        for(int i = 0; i < ArraySize; i++)
+            File << Content[i] << " ";
+        File << "\n";
         return true;
     }
     cout << "can't open file!";
@@ -55,18 +74,52 @@ string* File::ReadFile(string NameOfFile)
     system("pause");
 }
 
-
-string* File::DeCryptFile(string NameOfFile)
+int* File::ReadIntFromFile(string NameOfFile)
 {
-    string* Lines = this->ReadFile(NameOfFile);
-    for (int i = 0; i < NumberOfRowsInFile(NameOfFile);)
+    unsigned int NumberInArray = NumberOfRowsInFile(NameOfFile);
+    int* Lines = new int[NumberInArray];
+    string line;
+
+    while (true)
     {
-        string temp = Lines[i];
-        for (int k = 0; k < temp.length(); k++)
+        ifstream File;
+        File.open(NameOfFile, ofstream::app);
+        if (File.is_open())
         {
-            int newtemp = (int)temp[k] + 1;
-            WriteToFile("Inttest.txt", temp);
+            int Temp;
+            while(getline(File, line))
+            { 
+                int Rows = line.size();
+                int* BigTemp = new int[Rows];
+                while (File >> Temp);
+                {
+                    cout << Temp;
+                    system("pause");  
+                }  
+            }
+              
         }
+        File.close();
+        return Lines;
     }
-    return Lines;
+    cout << "Unable to open file\n";
+    system("pause");
+}
+
+bool File::InCryptToFile(string NameOfFile,string Content, int Seed)
+{
+    srand(Seed);
+    unsigned int size = Content.size();
+    int *ToCrypt = new int[size];
+    for (int i = 0; i < size; i++)
+        ToCrypt[i] = ((int)Content[i] + rand());
+    return WriteIntToFile(NameOfFile, ToCrypt, size);
+}
+
+string* File::DeCryptFile(string NameOfFile, int Seed)
+{
+    srand(Seed);
+    //* string Temp = 
+    
+    return &NameOfFile;
 }

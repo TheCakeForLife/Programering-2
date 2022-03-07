@@ -1,15 +1,17 @@
 #include <iostream>
-#include <fstream>
 #include <string>
 #include "User.h"
 #include "File.h"
+#pragma once
+
 using namespace std;
 
 void AddExistingUsers()
 {
-    int Rows = Fstream.NumberOfRowsInFile("Users.txt");
+    File FINOUT;
+    int Rows = FINOUT.NumberOfRowsInFile("Users.txt");
     User** Users = new User * [(Rows / 2)];
-    string* lines = Fstream.ReadFile("Users.txt");
+    string* lines = FINOUT.ReadFile("Users.txt");
     for (int i = 0; i < (Rows - 1); i += 2)
     {
         Users[i] = new User(lines[i], lines[i + 1]);
@@ -21,6 +23,7 @@ void AddExistingUsers()
 
 void MainUi()
 {
+    File FINOUT;
     while (true)
     {
         char input;
@@ -30,7 +33,7 @@ void MainUi()
         switch (input)
         {
         case '1':
-            Fstream.ReadFile("TEST.txt");
+            FINOUT.ReadFile("TEST.txt");
             break;
 
         case '2':
@@ -39,7 +42,7 @@ void MainUi()
             system("cls");
             cout << "Write to File\n";
             cin >> temp;
-            Fstream.WriteToFile("TEST.txt", temp);
+            FINOUT.WriteToFile("TEST.txt", temp);
         }
         break;
 
@@ -49,7 +52,7 @@ void MainUi()
         default:
         {
             cin.ignore();
-            cout << "Somthing went wrong\n";
+            cout << "That number is not in use try agin!\n";
             system("pause");
         }
 
@@ -61,6 +64,7 @@ void MainUi()
 
 void login()
 {
+    File FINOUT;
     bool done = false;
     while (!done)
     {
@@ -69,8 +73,8 @@ void login()
         cin >> Username;
         cout << "\nPassword\n";
         cin >> Password;
-        string* Lines = Fstream.ReadFile("Users.txt");
-        for (int i = 0; i < Fstream.NumberOfRowsInFile("Users.txt"); i += 2)
+        string* Lines = FINOUT.ReadFile("Users.txt");
+        for (int i = 0; i < FINOUT.NumberOfRowsInFile("Users.txt"); i += 2)
         {
             if ((Lines[i] == Username) && (Lines[i + 1] == Password))
             {
@@ -88,6 +92,7 @@ void login()
 
 void StartUi()
 {
+    File FINOUT;
     while (true)
     {
         string input;
@@ -103,7 +108,16 @@ void StartUi()
         else if (input == "3")
             return;
         else if (input == "4")
-            Fstream.DeCryptFile("TestC.txt");
+        {
+            FINOUT.InCryptToFile("InCryptToFileTest.txt", "test", 10);
+            int* Test = FINOUT.ReadIntFromFile("InCryptToFileTest.txt");
+            int Rows = FINOUT.NumberOfRowsInFile("InCryptToFileTest.txt");
+            for (int i = 0; i < Rows; i++)
+                cout << Test[i];
+
+            system("pause");
+        }
+            
         else
         {
             cout << "That number is not in use try agin!\n";

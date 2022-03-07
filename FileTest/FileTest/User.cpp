@@ -1,9 +1,13 @@
-#pragma once
+
 #include <iostream>
 #include <string>
+#include "LibTest.h"
 #include "User.h"
 #include "File.h"
+#pragma once
 using namespace std;
+
+
 
 User::User(string Username, string Password)
 {
@@ -15,20 +19,21 @@ User::User()
 {
     while (true)
 	{
+        File FINOUT;
         cout << "Username:\n";
         cin >> Username;
         cout << "\nPassword:\n";
         cin >> Password;
-        string* Lines = Fstream.ReadFile("Users.txt");
+        string* Lines = FINOUT.ReadFile("Users.txt");
         bool NotTaken = true;
-        int Rows = Fstream.NumberOfRowsInFile("Users.txt");
+        int Rows = FINOUT.NumberOfRowsInFile("Users.txt");
         for (int i = 0; i < Rows; i += 2)
             if ( Username == Lines[i])
                 NotTaken = false;
         if (NotTaken)
         {
-            Fstream.WriteToFile("Users.txt", Username);
-            Fstream.WriteToFile("Users.txt", Password);
+            FINOUT.WriteToFile("Users.txt", Username);
+            FINOUT.WriteToFile("Users.txt", Password);
             delete [] Lines;
             return;
         }
