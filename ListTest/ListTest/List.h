@@ -7,13 +7,11 @@ class List : private ListableItem
 {
 	public:
 	List();
-	int* GetData(int x) = 0;
-	std::string* GetData(std::string x) = 0;
+	void GetData() {};
 	void AddItem(ListableItem &Temp);
 	void CoutList();
+	ListableItem operator[](unsigned int i);
 	private:
 	ListableItem StartPoint;
-	private:
-		
 };
 static List SList;

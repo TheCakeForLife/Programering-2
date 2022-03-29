@@ -9,7 +9,6 @@ ListableItem::ListableItem(ListableItem& Temp)
 {
 	Prev = Temp.Prev;
 	Next = Temp.Next;
-	Data = &Temp;
 }
 
 ListableItem* ListableItem::GetPrev()

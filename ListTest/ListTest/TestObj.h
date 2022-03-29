@@ -5,11 +5,11 @@
 class TestObj : public ListableItem 
 {
 	public:
+		std::string GetData() { return Name; };
 		TestObj()
 		{
 			std::cin >> Name;
 		}
-		std::string* GetData();
 	private:
 		std::string Name;
 };

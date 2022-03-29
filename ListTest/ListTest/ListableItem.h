@@ -1,4 +1,5 @@
 #include <string>
+#include "ListBase.h"
 #pragma once
 
 class ListableItem
@@ -10,11 +11,7 @@ class ListableItem
 	ListableItem* GetNext();
 	void SetPrev(ListableItem& Temp);
 	void SetNext(ListableItem& Temp);
-	virtual std::string* GetData(std::string x) = 0;
-	virtual int* GetData(int x) = 0;
-	
 	private:
 	ListableItem* Prev;
 	ListableItem* Next;
-	ListableItem* Data;
 };
