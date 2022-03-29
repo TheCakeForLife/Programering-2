@@ -146,6 +146,7 @@
   <ItemGroup>
     <ClInclude Include="ListableItem.h" />
     <ClInclude Include="List.h" />
+    <ClInclude Include="ListBass.h" />
     <ClInclude Include="TestObj.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

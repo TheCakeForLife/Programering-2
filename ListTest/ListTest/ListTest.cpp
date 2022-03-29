@@ -9,8 +9,11 @@ int main()
     int Num;
     std::cin >> Num;
     TestObj* TestArray = new TestObj[Num];
-    for(int i = 0; i < Num; i++)
-        SList.AddItem(TestArray[i]);
-    SList.CoutList();
-    SList[1]
+    for (int i = 0; i < Num; i++)
+    {
+        TestObj* TestSingel = &TestArray[i];
+        std::cout << TestSingel << "\n";
+        SList.AddItem(TestSingel);
+    }
+    std::cout << SList[1].GetData();
 }

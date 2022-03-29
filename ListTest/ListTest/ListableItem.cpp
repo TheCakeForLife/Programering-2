@@ -20,11 +20,11 @@ ListableItem* ListableItem::GetNext()
 	return Next;
 }
 
-void ListableItem::SetPrev(ListableItem& Temp)
+void ListableItem::SetPrev(ListableItem* Temp)
 {
-	Prev = Temp.Prev;
+	Prev = Temp->Prev;
 }
-void ListableItem::SetNext(ListableItem& Temp)
+void ListableItem::SetNext(ListableItem* Temp)
 {
-	Next = Temp.Next;
+	Next = Temp->Next;
 }

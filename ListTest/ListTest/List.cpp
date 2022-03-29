@@ -7,7 +7,7 @@ List::List()
 
 ListableItem List::operator[](unsigned int K)
 {
-	ListableItem* Temp = &StartPoint;
+	ListableItem *Temp = StartPoint;
 	ListableItem *Temp2;
 	if (K > 0)
 		for (int i = 0; i < K; i++)
@@ -17,35 +17,35 @@ ListableItem List::operator[](unsigned int K)
 		}
 	else
 		return *Temp;
+	return *Temp;
 }
 
-void List::AddItem(ListableItem& Temp)
+void List::AddItem(ListableItem* Temp)
 {
-	if(!NumberOfItemsInList)
+	if (!NumberOfItemsInList)
 	{
-		Temp.SetPrev(Temp);
 		StartPoint = Temp;
 	}
-	else 
-		if (!StartPoint.GetNext())
-				StartPoint.SetNext(Temp);
-		else
-		{
-			ListableItem ItemToTest(StartPoint);
-			ListableItem *NewTemp = &ItemToTest;			
-			while (NewTemp->GetNext())
-				NewTemp = NewTemp->GetNext();
-			NewTemp->SetNext(Temp);
-		}
-	NumberOfItemsInList++;
-}
-
-void List::CoutList()
-{
-	ListableItem ItemToTest(StartPoint);
-	ListableItem* NewTemp = &ItemToTest;
-	while (NewTemp->GetNext())
+	else
 	{
-		NewTemp = NewTemp->GetNext();
-	}	
+		ListableItem* ItemToTest(StartPoint);
+		ListableItem* NewTemp = ItemToTest;
+
+		while (true)
+		{
+			if (!ItemToTest->GetNext())
+			{
+				ItemToTest->SetNext(Temp);
+				ItemToTest->SetPrev(NewTemp);
+				NumberOfItemsInList++;
+				return;
+			}
+			else
+			{
+				NewTemp = Temp;
+				ItemToTest = ItemToTest->GetNext();
+			}
+		}
+	}
+	NumberOfItemsInList++;
 }

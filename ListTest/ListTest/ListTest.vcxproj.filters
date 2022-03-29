@@ -35,5 +35,8 @@
     <ClInclude Include="TestObj.h">
       <Filter>Files</Filter>
     </ClInclude>
+    <ClInclude Include="ListBass.h">
+      <Filter>Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
