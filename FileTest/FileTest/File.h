@@ -11,4 +11,5 @@ public:
 	int* ReadIntFromFile(string NameOfFile);
 	string* DeCryptFile(string NameOfFile, int Seed);
 	bool InCryptToFile(string NameOfFile, string Content, int Seed);
+	int* StringToInt(string Str);
 };

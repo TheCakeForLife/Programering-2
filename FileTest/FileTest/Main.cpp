@@ -116,8 +116,7 @@ void StartUi()
                 cout << Test[i];
 
             system("pause");
-        }
-            
+        }    
         else
         {
             cout << "That number is not in use try agin!\n";

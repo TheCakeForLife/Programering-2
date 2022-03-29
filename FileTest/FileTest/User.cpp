@@ -9,10 +9,10 @@ using namespace std;
 
 
 
-User::User(string Username, string Password)
+User::User(string UserName, string PassWord)
 {
-    this->Password = Password;
-    this->Username = Username;
+    Password = PassWord;
+    Username = UserName;
 }
 
 User::User()

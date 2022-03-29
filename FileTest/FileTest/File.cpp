@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <stdlib.h>
+#include <sstream>
 #pragma once
 
 
@@ -86,24 +87,29 @@ int* File::ReadIntFromFile(string NameOfFile)
         File.open(NameOfFile, ofstream::app);
         if (File.is_open())
         {
-            int Temp;
-            while(getline(File, line))
-            { 
-                int Rows = line.size();
-                int* BigTemp = new int[Rows];
-                while (File >> Temp);
-                {
-                    cout << Temp;
-                    system("pause");  
-                }  
+            int i = 0;
+            while (getline(File, line) && i < NumberInArray)
+            {
+                Lines = StringToInt(line);
+                i++;
             }
-              
         }
         File.close();
         return Lines;
     }
     cout << "Unable to open file\n";
     system("pause");
+}
+
+int* File::StringToInt(string Str)
+{
+    // object from the class stringstream
+    stringstream geek(Str);
+    int num = Str.length();
+    int* ArryNum = new int[num];
+    for(int i = 0; i < num; i++)
+        geek >> ArryNum[i];
+    return ArryNum;
 }
 
 bool File::InCryptToFile(string NameOfFile,string Content, int Seed)
@@ -119,7 +125,13 @@ bool File::InCryptToFile(string NameOfFile,string Content, int Seed)
 string* File::DeCryptFile(string NameOfFile, int Seed)
 {
     srand(Seed);
-    //* string Temp = 
-    
+    int* Lines;
+    Lines = ReadIntFromFile(NameOfFile);
+    int Rows = NumberOfRowsInFile(NameOfFile);
+    for (int i = 0; i < Rows; i++)
+    {
+        cout << Lines[i] <<"test  ";
+    }
+    system("pause");
     return &NameOfFile;
 }
