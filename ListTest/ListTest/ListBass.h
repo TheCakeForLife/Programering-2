@@ -1,8 +1,9 @@
+#include<iostream>
 #pragma once
 class ListBase 
 {
 	public:
-	virtual void GetData() = 0;
+	virtual std::string GetData() = 0;
 	private:
 	ListBase();
 };

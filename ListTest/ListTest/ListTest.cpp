@@ -8,12 +8,9 @@ int main()
     std::cout << "Hello World!\nNumberOfTest-Items = ";
     int Num;
     std::cin >> Num;
-    TestObj* TestArray = new TestObj[Num];
     for (int i = 0; i < Num; i++)
     {
-        TestObj* TestSingel = &TestArray[i];
-        std::cout << TestSingel << "\n";
-        SList.AddItem(TestSingel);
+        SList.AddItem(new TestObj);
     }
-    std::cout << SList[1].GetData();
+    std::cout << SList[1]->GetData();
 }

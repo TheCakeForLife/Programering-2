@@ -7,9 +7,10 @@ class List : private ListableItem
 	public:
 	List();
 	void AddItem(ListableItem *Temp);
-	void CoutList();
-	ListableItem operator[](unsigned int i);
+	ListableItem* operator[](unsigned int i);
+	std::string GetData() { return "DontWork"; }
 	private:
-	ListableItem * StartPoint;
+	ListableItem * StartPoint = nullptr;
+	ListableItem* EndPoint = nullptr;
 };
 static List SList;
