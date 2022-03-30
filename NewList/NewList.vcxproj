@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{0455d085-e1ea-45ff-a295-0d154a58249c}</ProjectGuid>
-    <RootNamespace>ListTest</RootNamespace>
+    <ProjectGuid>{3f7606b4-bcc1-430f-8973-80a90cc852eb}</ProjectGuid>
+    <RootNamespace>NewList</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,14 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="List.cpp" />
-    <ClCompile Include="ListableItem.cpp" />
-    <ClCompile Include="ListTest.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="ListableItem.h" />
-    <ClInclude Include="List.h" />
-    <ClInclude Include="TestObj.h" />
+    <ClCompile Include="NewList.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

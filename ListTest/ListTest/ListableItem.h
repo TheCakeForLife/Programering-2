@@ -1,18 +1,16 @@
 #include <string>
-#include "ListBase.h"
 #pragma once
-
-class ListableItem : public ListBase
+// bass klass till List och man använder den för att lägga på det object som skall kunna läggas in i listor
+class ListableItem
 {
 	public:
 	ListableItem();
-	ListableItem(ListableItem& Temp);
+	virtual std::string GetData() = 0;
 	ListableItem* GetPrev();
 	ListableItem* GetNext();
 	void SetPrev(ListableItem* Temp);
 	void SetNext(ListableItem* Temp);
-	std::string GetData() { return "DontWork"; }
-	private:
-	ListableItem* Prev;
-	ListableItem* Next;
+	protected:
+		ListableItem* Prev = nullptr;
+		ListableItem* Next = nullptr;
 };

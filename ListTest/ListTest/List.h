@@ -1,16 +1,21 @@
 #include "ListableItem.h"
 #pragma once
-static unsigned int NumberOfItemsInList = 0;
+/*
+	Lista Som kan förvara ListableItem som i deta program är test obj men det kan vara en massa
+	object Som kan ha ärvt ListableItem 
+*/
 
-class List : private ListableItem
+class List : public ListableItem
 {
 	public:
-	List();
+	unsigned int NumberOfItemsInList = 0;
 	void AddItem(ListableItem *Temp);
-	ListableItem* operator[](unsigned int i);
-	std::string GetData() { return "DontWork"; }
+	void Remove(ListableItem* Item);
+	ListableItem* operator[](const unsigned int i);
+	std::string GetData() { return "DontWorkINList"; }
 	private:
-	ListableItem * StartPoint = nullptr;
+	ListableItem* StartPoint = nullptr;
 	ListableItem* EndPoint = nullptr;
+	
 };
-static List SList;
+

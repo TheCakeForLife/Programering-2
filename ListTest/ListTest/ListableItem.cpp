@@ -5,12 +5,6 @@ ListableItem::ListableItem()
 	Next = nullptr;
 }
 
-ListableItem::ListableItem(ListableItem& Temp)
-{
-	Prev = Temp.Prev;
-	Next = Temp.Next;
-}
-
 ListableItem* ListableItem::GetPrev()
 {
 	return Prev;
@@ -22,9 +16,9 @@ ListableItem* ListableItem::GetNext()
 
 void ListableItem::SetPrev(ListableItem* Temp)
 {
-	Prev = Temp->Prev;
+	Prev = Temp;
 }
 void ListableItem::SetNext(ListableItem* Temp)
 {
-	Next = Temp->Next;
+	Next = Temp;
 }
