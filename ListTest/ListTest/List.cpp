@@ -5,7 +5,7 @@ ListableItem* List::operator[](const unsigned int K ) // operator som ger en pek
 {
 	ListableItem *Temp = StartPoint;
 	for (int i = 0; i < K; i++)
-		if(Temp->GetNext())
+		if(Temp->GetNext() != Temp)
 			Temp = Temp->GetNext();
 	return Temp;
 }
@@ -21,27 +21,45 @@ det gör så att man byter ut den itemet som är i mitimellan två object i listan
 */
 void List::Remove(ListableItem* Item) // funktion för att ta bort ett item ur listan 
 {
-	if (Item->GetPrev() && Item->GetNext())
+	if (Item->GetPrev() == Item)
 	{
-		ListableItem* TempPrev = Item->GetPrev();
-		ListableItem* TempNext = Item->GetNext();
-		TempPrev->SetNext(TempNext);
-		TempNext->SetPrev(TempPrev);
-	}
-	else if (!Item->GetPrev()) // tar man bort det första elementet i listan efter som den ej har någon prev
-	{
+		Item->GetNext()->SetPrev(Item->GetNext());
 		StartPoint = Item->GetNext();
-		Item->GetNext()->SetPrev(nullptr);
 	}
-	else if (!Item->GetNext()) // tar bort det sista elementet i listan efter som det ej har någon Next pekare
+	else if (Item->GetNext() == Item)
 	{
-		EndPoint = Item->GetNext();
-		Item->GetNext()->SetPrev(nullptr);
+		Item->GetPrev()->SetNext(Item->GetPrev());
+		EndPoint = Item->GetPrev();
 	}
-		
-	ListableItem *Test = this;
+	else
+	{
+		Item->GetPrev()->SetNext(Item->GetNext());
+		Item->GetNext()->SetPrev(Item->GetPrev());
+	}
 	delete Item;
 	NumberOfItemsInList--;
+}
+
+void List::AddItemToPlace(ListableItem* NewItem, const unsigned int Spot, List TheList) // lägger till ett item i listan
+{
+	ListableItem *Temp = TheList[Spot];
+	if (!Spot) // ifall 0 så skall den läggas först i listan
+	{
+		StartPoint = NewItem;
+		Temp->SetPrev(NewItem);
+		NewItem->SetPrev(NewItem);
+		NewItem->SetNext(Temp);
+	}
+	else if(Temp->GetNext() == Temp)
+		TheList.AddItem(NewItem);
+	else
+	{
+		Temp->GetPrev()->SetNext(NewItem);
+		NewItem->SetPrev(Temp->GetPrev());
+		NewItem->SetNext(Temp);
+		Temp->SetPrev(NewItem);
+	}
+	NumberOfItemsInList++;
 }
 
 void List::AddItem(ListableItem* Temp) // lägger till ett item i listan
@@ -50,12 +68,14 @@ void List::AddItem(ListableItem* Temp) // lägger till ett item i listan
 	{
 		StartPoint = Temp;
 		EndPoint = Temp;
-		Next = Temp;
+		Temp->SetNext(Temp);
+		Temp->SetPrev(Temp);
 	}
 	else // anars så körs dena
 	{
 		EndPoint->SetNext(Temp);
-		SetPrev(EndPoint);
+		Temp->SetPrev(EndPoint);
+		Temp->SetNext(Temp);
 		EndPoint = Temp;
 	}
 	NumberOfItemsInList++; // lägger till 1 i variabeln som håller koll på hur många items som ligger i listan

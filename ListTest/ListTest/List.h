@@ -11,11 +11,11 @@ class List : public ListableItem
 	unsigned int NumberOfItemsInList = 0;
 	void AddItem(ListableItem *Temp);
 	void Remove(ListableItem* Item);
+	void AddItemToPlace(ListableItem* Temp, const unsigned int Spot,List TheList); // lägger till ett item i listan
 	ListableItem* operator[](const unsigned int i);
 	std::string GetData() { return "DontWorkINList"; }
 	private:
 	ListableItem* StartPoint = nullptr;
 	ListableItem* EndPoint = nullptr;
-	
 };
 

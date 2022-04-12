@@ -17,16 +17,16 @@ int main()
 {
     List SList; 
     std::cout << "Hello World!\nNumberOfTest-Items = ";
-    int Num;
+    int Num,Num2;
     std::cin >> Num; // inmatnig av hur många TestIstems Man vill lägga till i listan
     for (int i = 0; i < Num; i++)
         SList.AddItem(new TestObj);
     std::cout << SList.NumberOfItemsInList; // utmatnig av hur många Saker som ligger i Listan
     for (int i = 0; i < SList.NumberOfItemsInList ; i++) // lop för att Skriva utt allt i ordnig Som ligger i listan
         std::cout << SList[i]->GetData() << "\n";
-    std::cout <<  "Vilekn Ska bort?\n";
+    std::cout <<  "vart ska den nya in ?\n";
     std::cin >> Num;
-    SList.Remove(SList[Num]);
+    SList.AddItemToPlace(new TestObj, Num, SList);
     for (int i = 0; i < SList.NumberOfItemsInList; i++) // lop för att Skriva utt det som fins kvar efter man har tagit bort något ur listan
         std::cout << SList[i]->GetData();
 }
