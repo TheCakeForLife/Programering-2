@@ -21,12 +21,12 @@ det gör så att man byter ut den itemet som är i mitimellan två object i listan
 */
 void List::Remove(ListableItem* Item) // funktion för att ta bort ett item ur listan 
 {
-	if (Item->GetPrev() == Item)
+	if (StartPoint == Item)
 	{
 		Item->GetNext()->SetPrev(Item->GetNext());
 		StartPoint = Item->GetNext();
 	}
-	else if (Item->GetNext() == Item)
+	else if (EndPoint == Item)
 	{
 		Item->GetPrev()->SetNext(Item->GetPrev());
 		EndPoint = Item->GetPrev();
